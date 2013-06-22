@@ -2,6 +2,8 @@
 
 This is a fork of the CSV2XML [Ant](http://ant.apache.org/) task project located at: https://code.google.com/p/csv2xml-anttask/ under the [Apache License, Version 2](http://www.apache.org/licenses/LICENSE-2.0).
 
+Download built [csv2xml-anttask.jar](https://github.com/odu/csv2xml-anttask/raw/master/deploy/csv2xml-ant.jar)
+
 Additions to this project include support for Header Rows in the CSV that better map the CSV content to XML.  The original Ant Task would take CSV such as:
 
 ```
@@ -65,3 +67,11 @@ In ant Ant build file with the built csv2xml-ant.jar available in the same direc
 `skipEmpty` Boolean, Default: true.  Will leave off XML nodes for empty columns in the CSV input file.
 
 `lowerCaseTags` Boolean, Default: true.  Will Lower Case the headerRow titles in the element names in the XML output.
+
+## Building
+
+The csv2xml uses the Ant build tool.
+
+To compile: `ant`
+
+To build the jar: `ant deploy` which will build the Jar in the deploy folder.
