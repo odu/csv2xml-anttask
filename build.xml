@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<project name="csv2xml" default="compile" basedir=".">
+
+    <description>
+    	csv2xml build script.
+    </description>
+ 
+    <!-- ======================================================================================= -->
+    <!-- GLOBAL PROPERTIES                                                                       -->
+    <!-- ======================================================================================= -->
+
+    <property name="lib.dir" value="${basedir}/lib"/>
+	    <property name="java.dir" value="${basedir}/src"/>
+	    <property name="bin.dir" value="${basedir}/bin"/>
+    <property name="deploy.dir" value="${basedir}/deploy"/>
+
+    <!-- ======================================================================================= -->
+    <!-- PATHs / PATTERNSETs / FILTERSETs                                                        -->
+    <!-- ======================================================================================= -->
+
+    <patternset id="compile.sources">
+        <include name="**/*.java"/>
+    </patternset>
+
+    <!-- =======================================================================================	-->
+    <!-- TARGETs															-->
+    <!-- =======================================================================================	-->
+
+    <!-- compile =============================================================================== -->
+
+	<target name="compile">
+        <javac
+                	includeAntRuntime="no"
+                	debug="on"
+                	source="1.5"
+                	target="1.5"
+        		destdir="${bin.dir}"
+        		optimize="true"
+                >
+            <src path="${java.dir}"/>
+            <patternset refid="compile.sources"/>
+        	<classpath>
+  			<fileset dir="${ant.library.dir}" includes="**/*.jar"></fileset>
+        		<fileset dir="${lib.dir}" includes="*.jar"></fileset>
+        	</classpath>
+        </javac>
+	</target>
+	
+	<target name="deploy" depends="clean, compile" description="Compiles app code">
+        <jar jarfile="${deploy.dir}/csv2xml-ant.jar" index="true" duplicate="preserve">
+        	<fileset dir="${bin.dir}" includes="**/*.class"/>
+        	<fileset dir="${lib.dir}" excludes="*.jar" />
+        	<zipfileset src="${lib.dir}/opencsv-1.8.jar"/>
+            <manifest>
+			<attribute name="Built-By" value="Eugen Kremer"/>
+            </manifest>
+        </jar>
+    </target>
+
+
+	<target name="clean">
+		<delete>
+			<fileset dir="${basedir}" includes="**/*.class"/>
+		</delete>
+	</target>
+
+</project>
