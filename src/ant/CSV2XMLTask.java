@@ -186,6 +186,7 @@ public class CSV2XMLTask extends Task {
                     FileOutputStream os = new FileOutputStream(new File(outputfile));
                     StreamResult result = new StreamResult(os);
 
+                    transformer.setOutputProperty(OutputKeys.INDENT, "yes");
                     transformer.setOutputProperty(javax.xml.transform.OutputKeys.ENCODING, outencoding);
 
                     transformer.transform(source, result);
