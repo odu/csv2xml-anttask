@@ -124,9 +124,9 @@ public class CSV2XMLTask extends Task {
             
             for (int i = 0, c = line.length; i < c; i++) {
                 if (lowerCaseTags) {
-                    headers.add(line[i].replaceAll(" ", "_").toLowerCase());
+                    headers.add(line[i].replaceAll(" ", "_").toLowerCase().trim());
                 } else {
-                    headers.add(line[i].replaceAll(" ", "_"));
+                    headers.add(line[i].replaceAll(" ", "_").trim());
                 }
             }
             line = r.readNext();
